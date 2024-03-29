@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BinBolehXFirebase</string>
+    <string name="title_home">Home</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_map">map</string>
+    <string name="title_aichatbot">aichatbot</string>
 </resources>
