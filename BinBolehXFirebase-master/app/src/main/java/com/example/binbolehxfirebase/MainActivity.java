@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final int SPLASH_DISPLAY_LENGTH = 10000; // 10 seconds
+    private static final int SPLASH_DISPLAY_LENGTH = 5000; // 10 seconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

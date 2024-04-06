@@ -20,5 +20,10 @@
         <category android:name="android.intent.category.LAUNCHER" />
     </intent-filter>
 </activity>
+        <activity android:name=".HomePage"
+            android:exported="true"> <!-- Set exported as necessary -->
+            <!-- No intent-filter needed unless you want it to be an entry point or respond to specific intents -->
+        </activity>
+
     </application>
 </manifest>

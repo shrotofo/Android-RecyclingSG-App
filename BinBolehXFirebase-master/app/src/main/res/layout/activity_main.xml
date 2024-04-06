@@ -7,9 +7,11 @@
 
     <ImageView
         android:id="@+id/my_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/openingbg"
+        android:scaleType="centerCrop"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +24,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/my_imageview"
         app:layout_constraintEnd_toEndOf="@+id/my_imageview"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/my_imageview"
         app:layout_constraintTop_toTopOf="@+id/my_imageview" />
 
 
