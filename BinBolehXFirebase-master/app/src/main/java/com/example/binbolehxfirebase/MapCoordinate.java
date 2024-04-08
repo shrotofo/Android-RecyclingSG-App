@@ -12,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,12 +48,7 @@ public class MapCoordinate {
         map.addPolygon(polygonOptions).setTag(districtName);
 
 
-        // Setting a click listener for the polygon
-        map.setOnPolygonClickListener(polygon -> {
-            // Showing a Toast message for simplicity
-            Toast.makeText(context, "Clicked: " + polygon.getTag(), Toast.LENGTH_SHORT).show();
 
-        });
     }
 
         // Method to add a custom marker to the map
@@ -77,17 +73,26 @@ public class MapCoordinate {
                     .position(location) // Set the position of the marker
                     .title(title)// Set the title for the marker's info window
                      .icon(icon);
+        markerOptions.zIndex(1); // Any value higher than the polygon's z-index
 
-            // Add the marker to the map
+
+        // Add the marker to the map
             map.addMarker(markerOptions);
 
             // Set a listener for marker click events.
             map.setOnMarkerClickListener(marker -> {
+                Log.d("MarkerClick", "Marker clicked: " + marker.getTitle());
                 // Check if the clicked marker is the one we're interested in
                 if (marker.getPosition().equals(location)) {
                     // Inflate the custom popup layout using LayoutInflater
                     View popupView = LayoutInflater.from(context).inflate(R.layout.popup1, null);
+
                     PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
+                    popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+
                     // Find the button in popup1 and set a click listener
                     popupView.findViewById(R.id.button_image).setOnClickListener(view -> {
                         // Dismiss popup1
@@ -115,9 +120,4 @@ public class MapCoordinate {
                 return true;
             });
         }
-
-
-
-
-
 }

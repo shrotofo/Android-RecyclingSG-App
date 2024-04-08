@@ -52,6 +52,7 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
 
         mMap = googleMap;
 
+
         // Example coordinates for a district
         List<LatLng> Tampines = Arrays.asList(
                 new LatLng(1.37508, 103.93144),
@@ -83,7 +84,7 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
                 new LatLng(1.289748, 103.723720),
                 new LatLng(1.254310, 103.706085),
                 new LatLng(1.226465, 103.677493),
-                new LatLng(1.254696, 103.666356)
+                new LatLng(1.254696, 103.676356)
                 // Add more coordinates as needed
         );
 
