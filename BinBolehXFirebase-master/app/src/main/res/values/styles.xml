@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- Add other theme customizations if you have any. -->
+    </style>
+
+
+    <!-- Style for BottomNavigationView to remove icon tint -->
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="itemIconTint">@null</item>
+        <item name="itemTextColor">@null</item>
+    </style>
+</resources>
