@@ -63,11 +63,39 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
                 // Add more coordinates as needed
         );
 
+        LatLng Tamp1Location = new LatLng(1.349539, 103.947958); // Example coordinates
+        addCustomMarker(googleMap, Tamp1Location, "Tamp Bin 1", getContext());
+
+        LatLng Tamp2Location = new LatLng(1.362551, 103.938913); // Example coordinates
+        addCustomMarker(googleMap, Tamp2Location, "Tamp Bin 2", getContext());
+
         // Add a district polygon to the map
         MapCoordinate.addDistrictPolygon(mMap, getContext(), Tampines, "Tampines");
 
-        LatLng someLocation = new LatLng(1.448348, 103.934595); // Example coordinates
-        addCustomMarker(googleMap, someLocation, "Tamp Bin 1", getContext());
+
+
+
+        // Example coordinates for a district
+        List<LatLng> Jurong = Arrays.asList(
+                new LatLng(1.282625, 103.673667),
+                new LatLng(1.290816, 103.694507),
+                new LatLng(1.274611, 103.685245),
+                new LatLng(1.289748, 103.723720),
+                new LatLng(1.254310, 103.706085),
+                new LatLng(1.226465, 103.677493),
+                new LatLng(1.254696, 103.666356)
+                // Add more coordinates as needed
+        );
+
+        LatLng Jurong1 = new LatLng(1.269881, 103.695953); // Example coordinates
+        addCustomMarker(googleMap, Jurong1, "Jurong Bin 1", getContext());
+        LatLng Jurong2 = new LatLng(1.264430, 103.669861); // Example coordinates
+        addCustomMarker(googleMap, Jurong2, "Jurong Bin 2", getContext());
+
+        // Add a district polygon to the map
+        MapCoordinate.addDistrictPolygon(mMap, getContext(), Jurong, "Jurong");
+
+
 
 
     }

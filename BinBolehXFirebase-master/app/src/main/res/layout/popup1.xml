@@ -3,43 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/commonbg"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
 
     <ImageView
         android:id="@+id/background_image1"
-        android:layout_width="329dp"
-        android:layout_height="769dp"
+        android:layout_width="220dp"
+        android:layout_height="690dp"
         android:scaleType="fitCenter"
 
         android:src="@drawable/recyclinglevelwobutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/button_image"
-        android:layout_width="300dp"
-        android:layout_height="500dp"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
         android:scaleType="fitCenter"
         android:src="@drawable/clickherebutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.787" />
+        app:layout_constraintVertical_bias="0.63" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
