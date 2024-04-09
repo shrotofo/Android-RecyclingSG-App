@@ -1,6 +1,7 @@
 package com.example.binbolehxfirebase;
 
 import static com.example.binbolehxfirebase.MapCoordinate.addCustomMarker;
+import static com.example.binbolehxfirebase.MapCoordinate.handleMarkerClick;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -76,6 +77,8 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
 
 
 
+
+
         // Example coordinates for a district
         List<LatLng> Jurong = Arrays.asList(
                 new LatLng(1.282625, 103.673667),
@@ -93,11 +96,19 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
         LatLng Jurong2 = new LatLng(1.264430, 103.669861); // Example coordinates
         addCustomMarker(googleMap, Jurong2, "Jurong Bin 2", getContext());
 
-        // Add a district polygon to the map
-        MapCoordinate.addDistrictPolygon(mMap, getContext(), Jurong, "Jurong");
+        // Set a listener for marker click events.
+        mMap.setOnMarkerClickListener(marker -> {
+
+
+            // Handle the marker click event
+            handleMarkerClick(marker, getContext());
+
+            return true;
+        });
 
 
 
 
     }
+
 }

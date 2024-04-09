@@ -5,8 +5,8 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polygon;
-
 import android.content.Context;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Marker;
 
 
 public class MapCoordinate {
@@ -46,9 +47,6 @@ public class MapCoordinate {
                 .clickable(true);// Fill color with transparency
 
         map.addPolygon(polygonOptions).setTag(districtName);
-
-
-
     }
 
         // Method to add a custom marker to the map
@@ -79,45 +77,36 @@ public class MapCoordinate {
         // Add the marker to the map
             map.addMarker(markerOptions);
 
-            // Set a listener for marker click events.
-            map.setOnMarkerClickListener(marker -> {
-                Log.d("MarkerClick", "Marker clicked: " + marker.getTitle());
-                // Check if the clicked marker is the one we're interested in
-                if (marker.getPosition().equals(location)) {
-                    // Inflate the custom popup layout using LayoutInflater
-                    View popupView = LayoutInflater.from(context).inflate(R.layout.popup1, null);
-
-                    PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
-                    popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-
-
-                    // Find the button in popup1 and set a click listener
-                    popupView.findViewById(R.id.button_image).setOnClickListener(view -> {
-                        // Dismiss popup1
-                        popupWindow.dismiss();
-
-                        // Inflate popup2
-                        View popupView2 = LayoutInflater.from(context).inflate(R.layout.popup2, null);
-                        PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        popupView2.findViewById(R.id.close_button).setOnClickListener(view1 -> {
-                            // Logic to navigate back to the map page
-                            popupWindow2.dismiss();
-
-                        });
-                        // Show popup2
-                        popupWindow2.showAtLocation(popupView2, Gravity.CENTER, 0, 0);
-
-
-                    });
-
-                    popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-
-
-
-                }
-                return true;
-            });
         }
+
+
+    public static void handleMarkerClick(Marker marker, Context context) {
+        // Inflate the custom popup layout using LayoutInflater
+        View popupView = LayoutInflater.from(context).inflate(R.layout.popup1, null);
+        PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        // Show the popup window
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+        // Find the button in popup1 and set a click listener
+        popupView.findViewById(R.id.button_image).setOnClickListener(view -> {
+            // Dismiss popup1
+            popupWindow.dismiss();
+
+            // Inflate popup2
+            View popupView2 = LayoutInflater.from(context).inflate(R.layout.popup2, null);
+            PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set a click listener for the close button in popup2
+            popupView2.findViewById(R.id.close_button).setOnClickListener(view1 -> {
+                // Logic to navigate back to the map page
+                popupWindow2.dismiss();
+            });
+
+            // Show popup2
+            popupWindow2.showAtLocation(popupView2, Gravity.CENTER, 0, 0);
+        });
+    }
 }
