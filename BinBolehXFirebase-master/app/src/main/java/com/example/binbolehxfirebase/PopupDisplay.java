@@ -10,37 +10,30 @@ import android.widget.PopupWindow;
 public class PopupDisplay {
 
     public static void showPopup(Context context, BinMarker binMarker) {
-        // Show the first popup
-        PopupWindow popupWindow = createAndShowPopup(context, R.layout.popup1, view -> {
-            // Logic for what happens when the button in popup1 is clicked
-            // Dismiss popup1 and show popup2
-            showSecondPopup(context);
+        // Inflating the custom popup layout for the first popup
+        View popupView1 = LayoutInflater.from(context).inflate(R.layout.popup1, null);
+        PopupWindow popupWindow1 = new PopupWindow(popupView1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        popupWindow1.showAtLocation(popupView1, Gravity.CENTER, 0, 0); // Show the first popup
+
+        // Setting a click listener for the button in popup1 to transition to popup2
+        popupView1.findViewById(R.id.button_image).setOnClickListener(view -> {
+            popupWindow1.dismiss(); // Dismiss popup1 upon clicking the button
+
+            // Inflating popup2 after dismissing popup1
+            View popupView2 = LayoutInflater.from(context).inflate(R.layout.popup2, null);
+            PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            // Set a click listener for the close button in popup2
+            popupView2.findViewById(R.id.close_button).setOnClickListener(view1 -> {
+                // Logic to close popup2
+                popupWindow2.dismiss();
+            });
+
+            // Show popup2
+            popupWindow2.showAtLocation(popupView2, Gravity.CENTER, 0, 0);
         });
 
 
     }
 
-    private static void showSecondPopup(Context context) {
-        // Show the second popup
-        createAndShowPopup(context, R.layout.popup2, view -> {
 
-        });
-    }
-
-    private static PopupWindow createAndShowPopup(Context context, int layoutResId, View.OnClickListener onClickListener) {
-        // Inflating the custom popup layout
-        View popupView = LayoutInflater.from(context).inflate(layoutResId, null);
-        PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        // Assume the button ID is common or adjust accordingly
-        View button = popupView.findViewById(R.id.button_image); // Adjust ID as necessary
-        if (button != null) {
-            button.setOnClickListener(onClickListener);
-        }
-
-        // Show the popup window
-        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-
-        return popupWindow;
-    }
 }

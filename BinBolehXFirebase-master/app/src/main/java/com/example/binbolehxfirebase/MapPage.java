@@ -1,6 +1,6 @@
 package com.example.binbolehxfirebase;
 
-import static com.example.binbolehxfirebase.MapCoordinate.addCustomMarker;
+
 import static com.example.binbolehxfirebase.MapCoordinate.handleMarkerClick;
 
 import android.os.Bundle;
@@ -49,63 +49,22 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         setupMapBounds(googleMap);
-        List< DistrictPolygon > districts = createDistricts();
-        // Iterate over districts to draw polygons
+        // Draw Districts
+        List<DistrictPolygon> districts = getDistricts();
         for (DistrictPolygon district : districts) {
-            new DistrictPolygon(district.getCoordinates(), district.getDistrictName()).drawOnMap(googleMap, getContext());
+            district.drawOnMap(googleMap, getContext());
         }
 
-        // Create a list to hold all BinMarker instances
-        List<BinMarker> MarkersList = new ArrayList<>();
+        // Draw Markers
+        List<BinMarker> markersList = getMarkers();
+        // Assuming CustomMarker can now handle a list of BinMarker and draw them all.
+        new CustomMarker(markersList).drawOnMap(googleMap, getContext());
 
-
-
-
-
-
-
-
-
-
-        // Adding Tampines BinMarker instances
-        drawableObjects.add(new CustomMarker(new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1")));
-        drawableObjects.add(new CustomMarker(new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2")));
-
-
-        // Add a district polygon to the map
-        drawableObjects.add(new DistrictPolygon(TampinesPolygon, "Tampines"));
-
-
-
-
-
-
-
-
-        // Adding Jurong BinMarker instances
-        drawableObjects.add(new CustomMarker(new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1")));
-        drawableObjects.add(new CustomMarker(new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2")));
-
-        drawableObjects.add(new DistrictPolygon(Jurong, "Jurong"));
-        // Draw each object on the map
-        for (DrawableOnMap obj : drawableObjects) {
-            obj.drawOnMap(googleMap, getContext());
-        }
-        // Set a listener for marker click events.
-
-        // Handles marker click events by displaying a popup window
-        mMap.setOnMarkerClickListener(marker -> {
-
-
-            // Handle the marker click event
-            handleMarkerClick(marker, getContext());
-
-            return true;
-        });
-
-
-
-
+        // Setup Marker Click Behavior
+        // This assumes MarkerClickHandler is capable of handling clicks for all markers.
+        // Ensure each BinMarker or the corresponding GoogleMap Marker has all necessary data
+        // for MarkerClickHandler to decide the appropriate action.
+        MarkerClickHandler.setupMarkerClickBehavior(googleMap, getContext());
     }
 
     private void setupMapBounds(GoogleMap map) {
@@ -117,7 +76,7 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
         map.setLatLngBoundsForCameraTarget(SINGAPORE_BOUNDS);
     }
 
-    private List<DistrictPolygon> createDistricts() {
+    private List<DistrictPolygon> getDistricts() {
         List<DistrictPolygon> districts = new ArrayList<>();
 
         districts.add(new DistrictPolygon(Arrays.asList(
@@ -148,11 +107,13 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
 
 
 
-    private List<BinMarker> get() {
+    private List<BinMarker> getMarkers() {
         // Return a list of BinMarkers for Tampines or any specific area
         return Arrays.asList(
                 new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1"),
-                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2")
+                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2"),
+                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1"),
+                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2")
                 // Add more markers as needed
         );
     }
@@ -161,7 +122,7 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
         // Return a list of LatLng for Tampines polygon or any specific area
         return Arrays.asList(
                 new LatLng(1.37508, 103.93144),
-                new LatLng(1.348348, 103.924595),
+                new LatLng(1.348348, 103.924595)
                 // Add more coordinates as needed
         );
     }
