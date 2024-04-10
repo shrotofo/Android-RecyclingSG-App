@@ -8,7 +8,9 @@
 
     <!-- Style for BottomNavigationView to remove icon tint -->
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
-        <item name="itemIconTint">@null</item>
-        <item name="itemTextColor">@null</item>
+        <!--<item name="itemIconTint">@null</item>-->
+        <!--<item name="itemTextColor">@null</item>-->
+        <item name="itemIconSize">10dp</item>
+
     </style>
 </resources>

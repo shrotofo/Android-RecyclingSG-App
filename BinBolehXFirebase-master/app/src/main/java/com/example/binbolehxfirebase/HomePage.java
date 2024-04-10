@@ -23,7 +23,8 @@ public class HomePage extends AppCompatActivity {
             actionBar.hide(); // Hide the ActionBar if present
         }
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation); // Get the bottom navigation view
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setItemIconTintList(null);// Get the bottom navigation view
 
         // Set listener for bottom navigation item selection
         bottomNav.setOnItemSelectedListener(item -> {

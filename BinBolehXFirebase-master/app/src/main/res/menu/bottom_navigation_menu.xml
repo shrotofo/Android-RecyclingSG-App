@@ -3,21 +3,21 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/homeicon"
-        android:title="@string/title_home"
+        android:title=""
         />
     <item
         android:id="@+id/navigation_map"
         android:icon="@drawable/mapicon"
-        android:title="@string/title_map"
+        android:title=""
         />
     <item
         android:id="@+id/navigation_settings"
-        android:icon="@drawable/settingsicon1"
-        android:title="@string/title_settings"
+        android:icon="@drawable/settingsicon"
+        android:title=""
         />
     <item
         android:id="@+id/navigation_aichatbot"
         android:icon="@drawable/boticon"
-        android:title="@string/title_aichatbot"
+        android:title=""
         />
 </menu>

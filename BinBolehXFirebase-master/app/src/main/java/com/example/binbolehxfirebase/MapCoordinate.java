@@ -30,67 +30,6 @@ public class MapCoordinate {
 
     PopupWindow popupWindow; // Field declaration for a PopupWindow object
 
-    // Method to add a district polygon to the map dynamically
-    // Adds a polygon to the map representing a district boundary.
-//map refers to the google map obj to which the polygon will be added, list of LatLng coordinates defines the vertices of the polygon
-
-    public static void addDistrictPolygon(GoogleMap map, List<LatLng> coordinates, String districtName) {
-        // Checking if the map and other parameters are valid
-        if (map == null || coordinates == null || coordinates.isEmpty() || districtName == null) {
-            return; // Exit method if parameters are not valid
-        }
-
-        // Creating PolygonOptions with specified coordinates and styling
-        PolygonOptions polygonOptions = new PolygonOptions()
-                .addAll(coordinates) // Adding coordinates to the polygon
-                .strokeColor(Color.RED) // / Setting the boundary line colour
-                .fillColor(0x7F00FF00) // Setting the fill colour with transparency
-                .clickable(true); //Making the polygon clickable
-
-        // Adding the polygon to the map and tagging it with the district name
-        map.addPolygon(polygonOptions).setTag(districtName);
-    }
-
-
-    // Converts the svg into a BitmapDescriptor for use as a marker icon.
-
-    public static BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
-        // Retrieving the vector drawable from resources
-        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResourceId);
-        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
-
-        // Creating a Bitmap from the svg
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.draw(canvas);
-
-        // Returning a BitmapDescriptor created from the Bitmap
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
-    }
-
-    // Method to add a custom marker to the map
-    // Adds a custom marker to the map at a specified location.
-    public static void addCustomMarker(GoogleMap map, LatLng location, String title, Context context) {
-        if (map == null || location == null || title == null) {
-            return;
-        }
-
-        // Creating a BitmapDescriptor for the custom marker icon
-        BitmapDescriptor icon = bitmapDescriptorFromVector(context, R.drawable.trace);
-
-        // Creating options for drawing a marker on the map with specified propertie
-        MarkerOptions markerOptions = new MarkerOptions()
-                .position(location) // Set the position of the marker
-                .title(title) // Set the title for the marker's info window
-                .icon(icon)
-                .zIndex(1); // Set z-index higher than the polygon's z-index
-
-        // Adding the marker to the map
-        map.addMarker(markerOptions);
-    }
-
-    // Setting a listener to handle marker click events
-    // Displays a popup window when a marker is clicked.
 
     public static void handleMarkerClick(Marker marker, Context context) {
         // Inflating the custom popup layout using LayoutInflater

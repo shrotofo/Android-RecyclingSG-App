@@ -29,8 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_nav"
-        app:itemIconSize="@dimen/bottom_nav_icon_size"
+        app:itemIconSize="50dp"
         app:itemIconTint="@null"
+
 
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_navigation_menu"
