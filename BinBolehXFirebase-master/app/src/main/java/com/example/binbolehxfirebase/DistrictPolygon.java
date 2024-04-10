@@ -8,7 +8,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolygonOptions;
 
 import java.util.List;
-
+//to draw the district coordinates on map
 public class DistrictPolygon implements DrawableOnMap {
     private List<LatLng> coordinates;
     private String districtName;
@@ -25,15 +25,10 @@ public class DistrictPolygon implements DrawableOnMap {
     public String getDistrictName() {
         return districtName;
     }
-
     @Override
     public void drawOnMap(GoogleMap map, Context context) {
         addDistrictPolygon(map, coordinates, districtName);
     }
-
-
-
-
     public static void addDistrictPolygon(GoogleMap map, List<LatLng> coordinates, String districtName) {
         // Checking if the map and other parameters are valid
         if (map == null || coordinates == null || coordinates.isEmpty() || districtName == null) {

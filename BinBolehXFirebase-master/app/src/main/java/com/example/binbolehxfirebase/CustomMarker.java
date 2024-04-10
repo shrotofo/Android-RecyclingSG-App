@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
-
+//mark bins on map
 public class CustomMarker implements DrawableOnMap {
     private List<BinMarker> binMarkerList;
 
@@ -28,17 +28,11 @@ public class CustomMarker implements DrawableOnMap {
         addCustomMarker(map, binMarkerList, context);
     }
 
-
-
-
-
-
     public static void addCustomMarker(GoogleMap map, List<BinMarker> markers, Context context) {
 
         for (BinMarker marker : markers) {
             LatLng location = marker.getLocation();
             String title = marker.getTitle();
-
 
             if (map == null || location == null || title == null) {
                 return;

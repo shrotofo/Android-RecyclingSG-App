@@ -1,14 +1,13 @@
 package com.example.binbolehxfirebase;
 
 
-import static com.example.binbolehxfirebase.MapCoordinate.handleMarkerClick;
+
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupWindow;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -57,13 +56,11 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
 
         // Draw Markers
         List<BinMarker> markersList = getMarkers();
-        // Assuming CustomMarker can now handle a list of BinMarker and draw them all.
+        // CustomMarker can now handle a list of BinMarker and draw them all.
         new CustomMarker(markersList).drawOnMap(googleMap, getContext());
 
         // Setup Marker Click Behavior
-        // This assumes MarkerClickHandler is capable of handling clicks for all markers.
-        // Ensure each BinMarker or the corresponding GoogleMap Marker has all necessary data
-        // for MarkerClickHandler to decide the appropriate action.
+        // MarkerClickHandler is capable of handling clicks for all markers.
         MarkerClickHandler.setupMarkerClickBehavior(googleMap, getContext());
     }
 
@@ -100,8 +97,6 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
 
         ),"Jurong"));
 
-
-
         return districts;
     }
 
@@ -110,21 +105,14 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
     private List<BinMarker> getMarkers() {
         // Return a list of BinMarkers for Tampines or any specific area
         return Arrays.asList(
-                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1"),
-                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2"),
-                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1"),
-                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2")
+                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1",001),
+                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2",002),
+                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1",003),
+                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2",004)
                 // Add more markers as needed
         );
     }
 
-    private List<LatLng> getTampinesPolygon() {
-        // Return a list of LatLng for Tampines polygon or any specific area
-        return Arrays.asList(
-                new LatLng(1.37508, 103.93144),
-                new LatLng(1.348348, 103.924595)
-                // Add more coordinates as needed
-        );
-    }
+
 
 }
