@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.view.View;
 
-import com.example.binbolehxfirebase.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,26 +17,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ValueEventListener;
 
+//Inheritance used to inherit methods from AppCompatActivity (managing fragments and UI)
 public class MainActivity extends AppCompatActivity {
-
+    // Private access modifiers for encapsulation
     private static final String TAG = "MainActivity";
-    private static final int SPLASH_DISPLAY_LENGTH = 5000; // 10 seconds
-
+    private static final int SPLASH_DISPLAY_LENGTH = 5000; // Display splash screen
+    // Polymorphism allows MainActivity to implement a specific behavior for the onCreate method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
+        //View decorView = getWindow().getDecorView();
+        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        //decorView.setSystemUiVisibility(uiOptions);
+
+        // Retrieves the ActionBar and hides it for a full-screen experience
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
 
 
-   //display splash screen for 10 sec
+   //handler to delay execution and show splash screen
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(MainActivity.this, HomePage.class);
             startActivity(intent);
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            //called when listener fails at server
             public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());

@@ -19,9 +19,11 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.Arrays;
 import java.util.List;
 
-
+//interface for working with google maps api
 public class MapPage extends Fragment implements OnMapReadyCallback {
     private View popupView;
+    // Field declaration for storing a reference to the popup view
+    // Encapsulation: private field to encapsulate the view, ensuring access control.
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,11 +33,12 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        // Note: Use getChildFragmentManager() instead of getSupportFragmentManager() inside Fragments
+        // Note: Use getChildFragmentManager() inside Fragments bc map is nested inside current mappage so we cast it
+        // we cast to gain access to all funcs of SuportMapFragment and match to xml
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
+            mapFragment.getMapAsync(this); //exceute onMapReady
         }
 
         // Return the View for the fragment's UI
@@ -43,11 +46,12 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
     }
 
     // Overridden method from OnMapReadyCallback interface
+    // Callback method invoked when the map is ready for use, setting up map functionality and markers.
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // Assign the GoogleMap object to the mMap field
         GoogleMap mMap = googleMap;
-
+        // zooming the specified coordinates
         // Move the camera to the specified coordinates (Latitude and Longitude) with a zoom level
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(1.3521, 103.8198), 5));
 
@@ -65,14 +69,14 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
                 // Add more coordinates as needed
         );
 
-        LatLng Tamp1Location = new LatLng(1.349539, 103.947958); // Example coordinates
+        LatLng Tamp1Location = new LatLng(1.349539, 103.947958); // Example coordinate marker
         addCustomMarker(googleMap, Tamp1Location, "Tamp Bin 1", getContext());
 
-        LatLng Tamp2Location = new LatLng(1.362551, 103.938913); // Example coordinates
+        LatLng Tamp2Location = new LatLng(1.362551, 103.938913); // Example coordinate marker
         addCustomMarker(googleMap, Tamp2Location, "Tamp Bin 2", getContext());
 
         // Add a district polygon to the map
-        MapCoordinate.addDistrictPolygon(mMap, getContext(), Tampines, "Tampines");
+        MapCoordinate.addDistrictPolygon(mMap,  Tampines, "Tampines");
 
 
 
@@ -97,6 +101,8 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
         addCustomMarker(googleMap, Jurong2, "Jurong Bin 2", getContext());
 
         // Set a listener for marker click events.
+
+        // Handles marker click events by displaying a popup window
         mMap.setOnMarkerClickListener(marker -> {
 
 

@@ -4,7 +4,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.android.gms.maps.model.Polygon;
 import android.content.Context;
 
 import android.graphics.Bitmap;
@@ -12,13 +11,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.core.content.ContextCompat;
@@ -31,71 +28,84 @@ import com.google.android.gms.maps.model.Marker;
 
 public class MapCoordinate {
 
-    PopupWindow popupWindow;
+    PopupWindow popupWindow; // Field declaration for a PopupWindow object
 
     // Method to add a district polygon to the map dynamically
-    public static void addDistrictPolygon(GoogleMap map, Context context, List<LatLng> coordinates, String districtName) {
+    // Adds a polygon to the map representing a district boundary.
+//map refers to the google map obj to which the polygon will be added, list of LatLng coordinates defines the vertices of the polygon
+
+    public static void addDistrictPolygon(GoogleMap map, List<LatLng> coordinates, String districtName) {
+        // Checking if the map and other parameters are valid
         if (map == null || coordinates == null || coordinates.isEmpty() || districtName == null) {
-            return; // Guard clause to ensure we have valid parameters
+            return; // Exit method if parameters are not valid
         }
 
-
+        // Creating PolygonOptions with specified coordinates and styling
         PolygonOptions polygonOptions = new PolygonOptions()
-                .addAll(coordinates)
-                .strokeColor(Color.RED) // Boundary line color
-                .fillColor(0x7F00FF00)
-                .clickable(true);// Fill color with transparency
+                .addAll(coordinates) // Adding coordinates to the polygon
+                .strokeColor(Color.RED) // / Setting the boundary line colour
+                .fillColor(0x7F00FF00) // Setting the fill colour with transparency
+                .clickable(true); //Making the polygon clickable
 
+        // Adding the polygon to the map and tagging it with the district name
         map.addPolygon(polygonOptions).setTag(districtName);
     }
 
-        // Method to add a custom marker to the map
+
+    // Converts the svg into a BitmapDescriptor for use as a marker icon.
 
     public static BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
+        // Retrieving the vector drawable from resources
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResourceId);
         vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+
+        // Creating a Bitmap from the svg
         Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.draw(canvas);
+
+        // Returning a BitmapDescriptor created from the Bitmap
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
+    // Method to add a custom marker to the map
+    // Adds a custom marker to the map at a specified location.
     public static void addCustomMarker(GoogleMap map, LatLng location, String title, Context context) {
-            if (map == null || location == null || title == null) {
-                return; // Guard clause to ensure valid parameters
-            }
-        BitmapDescriptor icon = bitmapDescriptorFromVector(context, R.drawable.trace);
-
-        // Create a MarkerOptions object
-            MarkerOptions markerOptions = new MarkerOptions()
-                    .position(location) // Set the position of the marker
-                    .title(title)// Set the title for the marker's info window
-                     .icon(icon);
-        markerOptions.zIndex(1); // Any value higher than the polygon's z-index
-
-
-        // Add the marker to the map
-            map.addMarker(markerOptions);
-
-
-
+        if (map == null || location == null || title == null) {
+            return;
         }
 
+        // Creating a BitmapDescriptor for the custom marker icon
+        BitmapDescriptor icon = bitmapDescriptorFromVector(context, R.drawable.trace);
+
+        // Creating options for drawing a marker on the map with specified propertie
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(location) // Set the position of the marker
+                .title(title) // Set the title for the marker's info window
+                .icon(icon)
+                .zIndex(1); // Set z-index higher than the polygon's z-index
+
+        // Adding the marker to the map
+        map.addMarker(markerOptions);
+    }
+
+    // Setting a listener to handle marker click events
+    // Displays a popup window when a marker is clicked.
 
     public static void handleMarkerClick(Marker marker, Context context) {
-        // Inflate the custom popup layout using LayoutInflater
+        // Inflating the custom popup layout using LayoutInflater
         View popupView = LayoutInflater.from(context).inflate(R.layout.popup1, null);
         PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        // Show the popup window
+        // Showing the popup window at the center of the screen
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
 
-        // Find the button in popup1 and set a click listener
+        // Setting a click listener for the button in popup1
         popupView.findViewById(R.id.button_image).setOnClickListener(view -> {
-            // Dismiss popup1
+            // Dismissing popup1
             popupWindow.dismiss();
 
-            // Inflate popup2
+            // Inflating popup2
             View popupView2 = LayoutInflater.from(context).inflate(R.layout.popup2, null);
             PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
