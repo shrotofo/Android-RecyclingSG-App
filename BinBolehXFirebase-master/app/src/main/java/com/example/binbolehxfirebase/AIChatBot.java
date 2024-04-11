@@ -95,7 +95,7 @@ public class AIChatBot extends Fragment {
 
     private String makeNetworkCallToChatGPT(String question) throws IOException {
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "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";
+        String apiKey = "INSERT API KEY";
         String model = "gpt-3.5-turbo"; // Adjust model as needed
 
         // Create the HTTP POST request
