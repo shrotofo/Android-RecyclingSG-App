@@ -15,6 +15,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +26,8 @@ import java.util.List;
 
 //interface for working with google maps api
 public class MapPage extends Fragment implements OnMapReadyCallback {
+
+    private DatabaseReference binsRef;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,13 +111,28 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
     private List<BinMarker> getMarkers() {
         // Return a list of BinMarkers for Tampines or any specific area
         return Arrays.asList(
-                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1",001),
-                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2",002),
-                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1",003),
-                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2",004)
+                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1",0001),
+                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2",0002),
+                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1",0003),
+                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2",0004)
                 // Add more markers as needed
         );
     }
+
+
+
+    public void processMarkers(List<BinMarker> markers) {
+        // Iterate over the list of markers and access their IDs
+        for (BinMarker marker : markers) {
+            double id = marker.getId();
+            // Do something with the marker ID
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            binsRef = database.getReference(String.valueOf(id));
+
+        }
+    }
+
+
 
 
 

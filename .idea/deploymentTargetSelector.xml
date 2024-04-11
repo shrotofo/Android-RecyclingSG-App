@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="BinBolehXFirebase.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-04-08T07:53:55.587303300Z">
+        <DropdownSelection timestamp="2024-04-11T06:05:14.654881700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="PhysicalDevice" identifier="serial=RFCT818QPQL" />

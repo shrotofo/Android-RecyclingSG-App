@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -49,8 +50,12 @@ public class CustomMarker implements DrawableOnMap {
                     .icon(icon)
                     .zIndex(1); // Set z-index higher than the polygon's z-index
 
-            // Adding the marker to the map
-            map.addMarker(markerOptions);
+            // Add the marker to the map
+            Marker mapMarker = map.addMarker(markerOptions);
+
+
+
+
         }
     }
 

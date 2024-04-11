@@ -32,5 +32,5 @@ public class BinMarker {
 
     public void setId(double id){this.id=id ; }
 
-    public double getId(double id){ return id;}
+    public double getId(){ return id;}
 }
