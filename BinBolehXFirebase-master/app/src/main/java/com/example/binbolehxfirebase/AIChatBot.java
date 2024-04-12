@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,10 +27,16 @@ import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AIChatBot extends Fragment {
     private EditText editTextQuestion;
-    private TextView textViewResponse;
+    private Button buttonSend;
+    private RecyclerView messagesRecyclerView;
+    private MessageAdapter messageAdapter;
+    private List<Message> messagesList = new ArrayList<>();
+
     private ExecutorService executorService = Executors.newFixedThreadPool(4); // Executor for background tasks
     private Handler handler = new Handler(Looper.getMainLooper()); // Handler to post results back to the main thread
     public AIChatBot() {
@@ -42,12 +49,23 @@ public class AIChatBot extends Fragment {
         View view = inflater.inflate(R.layout.aichatbot, container, false);
 
         editTextQuestion = view.findViewById(R.id.editTextQuestion);
-        Button buttonAsk = view.findViewById(R.id.buttonAsk);
-        textViewResponse = view.findViewById(R.id.textViewResponse);
+        buttonSend = view.findViewById(R.id.buttonSend);
+        messagesRecyclerView = view.findViewById(R.id.messagesRecyclerView);
 
-        buttonAsk.setOnClickListener(v -> {
-            String question = editTextQuestion.getText().toString();
-            chatGPT(question);
+        messagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        messageAdapter = new MessageAdapter(getContext(), messagesList);
+        messagesRecyclerView.setAdapter(messageAdapter);
+
+        buttonSend.setOnClickListener(v -> {
+            String question = editTextQuestion.getText().toString().trim();
+            if (!question.isEmpty()) {
+                // Display the user's message
+                addMessage(new Message(question, true));
+                // Clear input field
+                editTextQuestion.setText("");
+                // Call the method to handle sending the question
+                chatGPT(question);
+            }
         });
 
         return view;
@@ -56,9 +74,9 @@ public class AIChatBot extends Fragment {
     private void chatGPT(String question) {
         String[] keywords = {"recycle", "recycling", "plastic", "plastics", "metal", "metals",
                 "glass", "batteries", "battery", "trash", "bin", "bins", "compost",
-                "environment", "sustainability"};
+                "environment", "sustainability", "iron", "steel"};
         String[] queries = {"hello", "who are you", "what are you", "what can you do",
-                "hello, who are you", "hello who are you"};
+                "hello, who are you", "hello who are you", "hi"};
         CompletableFuture.supplyAsync(() -> {
             // Network call to chatGPT API
             boolean containsKeyword = false;
@@ -85,17 +103,25 @@ public class AIChatBot extends Fragment {
                 }
             } else if (containsQuery) {
                 // If it contains a query, respond with a predefined message
-                return "Hello, I am your recycling guide. Ask me anything about recycling!";
+                return "Hello, I am Boleh Bot, your recycling guide. Ask me anything about recycling!";
             } else {
                 // If it contains neither, respond with an error message
                 return "Sorry, I can only provide information about recycling. Please ask a recycling-related question.";
             }
-        }, executorService).thenAccept(response -> handler.post(() -> textViewResponse.setText(response)));
+        }, executorService).thenAccept(response -> handler.post(() -> addMessage(new Message(response, false))));
+    }
+
+    private void addMessage(Message message) {
+        messagesList.add(message);
+        // Notify the adapter that a new item has been added
+        messageAdapter.notifyItemInserted(messagesList.size() - 1);
+        // Scroll to the bottom so the newest message is visible
+        messagesRecyclerView.scrollToPosition(messagesList.size() - 1);
     }
 
     private String makeNetworkCallToChatGPT(String question) throws IOException {
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "INSERT API KEY";
+        String apiKey = "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";
         String model = "gpt-3.5-turbo"; // Adjust model as needed
 
         // Create the HTTP POST request
@@ -162,4 +188,5 @@ public class AIChatBot extends Fragment {
         executorService.shutdown(); // Shut down the executor service when the fragment is destroyed
     }
 }
+
 
