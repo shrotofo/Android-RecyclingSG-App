@@ -51,6 +51,8 @@ public class AIChatBot extends Fragment {
         editTextQuestion = view.findViewById(R.id.editTextQuestion);
         buttonSend = view.findViewById(R.id.buttonSend);
         messagesRecyclerView = view.findViewById(R.id.messagesRecyclerView);
+        int spaceInPixels = getResources().getDimensionPixelSize(R.dimen.message_spacing);
+        messagesRecyclerView.addItemDecoration(new itemDecor(spaceInPixels));
 
         messagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         messageAdapter = new MessageAdapter(getContext(), messagesList);
@@ -187,6 +189,12 @@ public class AIChatBot extends Fragment {
         super.onDestroy();
         executorService.shutdown(); // Shut down the executor service when the fragment is destroyed
     }
+
+    public int getItemViewType(int position) {
+        Message message = messagesList.get(position);
+        return message.isFromUser() ? 1 : 0; // Assuming there's a method to check if the message is from the user
+    }
+
 }
 
 

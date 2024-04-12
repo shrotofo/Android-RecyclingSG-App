@@ -3,7 +3,7 @@
     android:id="@+id/textViewMessage"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="8dp"
+    android:padding="10dp"
     android:textAppearance="?attr/textAppearanceListItem"
     android:textColor="@android:color/black"
     android:background="@drawable/bg_chat_bubble"
