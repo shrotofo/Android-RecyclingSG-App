@@ -111,10 +111,10 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
     private List<BinMarker> getMarkers() {
         // Return a list of BinMarkers for Tampines or any specific area
         return Arrays.asList(
-                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1","0001"),
-                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2","0002"),
-                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1","0003"),
-                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2","0004")
+                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1",0001),
+                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2",0002),
+                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1",0003),
+                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2",0004)
                 // Add more markers as needed
         );
     }
@@ -124,10 +124,10 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
     public void processMarkers(List<BinMarker> markers) {
         // Iterate over the list of markers and access their IDs
         for (BinMarker marker : markers) {
-            String id = marker.getIdbin();
+            double id = marker.getId();
             // Do something with the marker ID
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            binsRef = database.getReference(id);
+            binsRef = database.getReference(String.valueOf(id));
 
         }
     }
