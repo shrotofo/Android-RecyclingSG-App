@@ -22,6 +22,20 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
+    <TextView
+        android:id="@+id/textViewQa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="100%"
+        android:textColor="#351C1C"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/live_bin"
+        app:layout_constraintEnd_toEndOf="@+id/background_image1"
+        app:layout_constraintStart_toStartOf="@+id/background_image1"
+        app:layout_constraintTop_toTopOf="@+id/live_bin"
+        app:layout_constraintVertical_bias="0.712" />
+
     <ImageView
         android:id="@+id/live_bin"
         android:layout_width="146dp"
@@ -31,7 +45,7 @@
         android:src="@drawable/fullrecyclinglevel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.247" />
@@ -47,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697" />
+        app:layout_constraintVertical_bias="0.719" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

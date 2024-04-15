@@ -74,7 +74,7 @@ public class AIChatBot extends Fragment {
     }
 
     private void chatGPT(String question) {
-        String[] keywords = {"recycle", "recycling", "plastic", "plastics", "metal", "metals",
+        String[] keywords = {"recycle", "recycling", "recycled", "plastic", "plastics", "metal", "metals",
                 "glass", "batteries", "battery", "trash", "bin", "bins", "compost",
                 "environment", "sustainability", "iron", "steel"};
         String[] queries = {"hello", "who are you", "what are you", "what can you do",
@@ -123,7 +123,7 @@ public class AIChatBot extends Fragment {
 
     private String makeNetworkCallToChatGPT(String question) throws IOException {
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "INSERT API KEY HEREi";
+        String apiKey = "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";
         String model = "gpt-3.5-turbo"; // Adjust model as needed
 
         // Create the HTTP POST request

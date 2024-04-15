@@ -52,12 +52,15 @@ public class CustomMarker implements DrawableOnMap {
 
             // Add the marker to the map
             Marker mapMarker = map.addMarker(markerOptions);
+            mapMarker.setTag(marker);
 
 
 
 
         }
     }
+
+
 
     public static BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
         // Retrieving the vector drawable from resources

@@ -6,12 +6,12 @@ public class BinMarker {
     private LatLng location;
     private String title;
 
-    private double id;
+    private String idbin;
 
-    public BinMarker(LatLng location, String title,double id ) {
+    public BinMarker(LatLng location, String title,String idbin ) {
         this.location = location;
         this.title = title;
-        this.id=id;
+        this.idbin=idbin;
     }
 
     public LatLng getLocation() {
@@ -30,7 +30,7 @@ public class BinMarker {
         this.title = title;
     }
 
-    public void setId(double id){this.id=id ; }
+    public void setId1(double id1){this.idbin=idbin; }
 
-    public double getId(){ return id;}
+    public String getIdbin(){ return idbin;}
 }

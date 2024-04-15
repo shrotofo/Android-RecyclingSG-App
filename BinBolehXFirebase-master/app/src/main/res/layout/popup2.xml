@@ -34,5 +34,49 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.444" />
 
+    <TextView
+        android:id="@+id/textViewQa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="200dp"
+        android:text="128 Trees Saved!!"
+        android:textColor="#351C1C"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/background_image1"
+        app:layout_constraintHorizontal_bias="0.417"
+        app:layout_constraintStart_toStartOf="@+id/background_image1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="1.2% Water Saved!!"
+        android:textColor="#351C1C"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_image1"
+        app:layout_constraintEnd_toEndOf="@+id/background_image1"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@+id/background_image1"
+        app:layout_constraintTop_toTopOf="@+id/background_image1"
+        app:layout_constraintVertical_bias="0.483" />
+
+    <TextView
+        android:id="@+id/textView1234"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="0.8% CO2 Reduction!!"
+        android:textColor="#351C1C"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_image1"
+        app:layout_constraintEnd_toEndOf="@+id/background_image1"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/background_image1"
+        app:layout_constraintTop_toTopOf="@+id/background_image1"
+        app:layout_constraintVertical_bias="0.587" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
