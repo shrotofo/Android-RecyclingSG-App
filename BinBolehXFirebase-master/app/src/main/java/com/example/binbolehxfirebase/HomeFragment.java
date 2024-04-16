@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -63,21 +64,37 @@ public class HomeFragment extends Fragment {
                 // After fetching the data, sort it by month names if necessary
                 // and then pass the sorted list to your SpikeChartView to draw the graph
                 Collections.sort(monthsList, new Comparator<MonthData>() {
-                    @Override
-                    public int compare(MonthData m1, MonthData m2) {
-                        // Implement comparison logic for sorting by month names
-                        return m1.getName().compareTo(m2.getName());
-                    }
-                });
+                   @Override
+                  public int compare(MonthData m1, MonthData m2) {
+                        // You might want to have a method that converts month names to numerical order.
+                      return Integer.compare(monthNameToOrder(m1.getName()), monthNameToOrder(m2.getName()));
+                   }
+               });
+
+
+
 
                 //  method in your SpikeChartView to set the data
                 SpikeChartView spikeChartView = view.findViewById(R.id.spikeChartView);
                 spikeChartView.setMonths(monthsList);
+
+                if (progressPB != null) {
+                    progressPB.setVisibility(View.GONE);
+                }
+            }
+
+            private int monthNameToOrder(String monthName) {
+                List<String> months = Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+                return months.indexOf(monthName); // This will return -1 for not found
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle error
+                if (progressPB != null) {
+                    progressPB.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -86,5 +103,7 @@ public class HomeFragment extends Fragment {
         return view;
 
     }
+
+
 }
 
