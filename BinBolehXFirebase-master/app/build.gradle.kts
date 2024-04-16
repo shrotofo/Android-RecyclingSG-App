@@ -42,5 +42,6 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation ("com.google.android.gms:play-services-maps:17.0.0")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }

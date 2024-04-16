@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,9 @@ public class HomeFragment extends Fragment {
 
     private ProgressBar progressPB;
 
+    private BarChart barChart;
+    private BarGraph barGraph;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -44,6 +48,9 @@ public class HomeFragment extends Fragment {
 
 
 
+        barChart = view.findViewById(R.id.barChart_view);
+        barGraph = new BarGraph(requireContext(), barChart);
+        barGraph.fetchAndUpdateGraphData();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 

@@ -21,10 +21,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+
     <ImageView
         android:id="@+id/heading_leader"
         android:layout_width="150dp"
         android:layout_height="50dp"
+        android:layout_marginTop="88dp"
         android:src="@drawable/leaderboardboard"
         app:layout_constraintBottom_toTopOf="@+id/leaderboard_axis"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,27 +35,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
-        android:id="@+id/leaderboard_axis"
-        android:layout_width="293dp"
-        android:layout_height="226dp"
-        android:src="@drawable/leaderboardaxiss"
-        app:layout_constraintBottom_toBottomOf="@+id/background_image"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart_view"
+        android:layout_width="285dp"
+        android:layout_height="174dp"
+        android:src="@drawable/monthlyaxis"
+        app:layout_constraintBottom_toTopOf="@+id/heading_month"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
-
-    <ImageView
-        android:id="@+id/leaderboard_chart"
-        android:layout_width="247dp"
-        android:layout_height="139dp"
-        android:src="@drawable/leaderboardbins"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.334" />
+        app:layout_constraintTop_toBottomOf="@+id/heading_leader"
+        app:layout_constraintVertical_bias="0.621" />
 
     <ImageView
         android:id="@+id/heading_month"
@@ -64,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboard_axis"
+
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
@@ -87,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heading_month"
+        app:layout_constraintTop_toBottomOf="@+id/heading_month"
         app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar

@@ -11,6 +11,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven(url = "https://jitpack.io")
 
 
     }
@@ -18,4 +19,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "BinBolehXFirebase"
 include(":app")
+
  

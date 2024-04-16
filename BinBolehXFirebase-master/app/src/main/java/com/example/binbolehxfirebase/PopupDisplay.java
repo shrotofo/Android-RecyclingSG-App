@@ -25,12 +25,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class PopupDisplay {
 
      // Global variable to store dailyPercent value
     ImageView live_bin;
     TextView dailyPercent;
     private static DistrictLocationsModel districtLocationsModel = new DistrictLocationsModel();
+
     private static DistrictLocationsModel getDistrictLocationDetails(String binID){
         DistrictLocationsModel districtLocationsModel = new DistrictLocationsModel();
 
@@ -46,6 +49,7 @@ public class PopupDisplay {
 
         return districtLocationsModel;
     }
+
     public static void showPopup(Context context, BinMarker binMarker) {
         // Inflating the custom popup layout for the first popup
         View popupView1 = LayoutInflater.from(context).inflate(R.layout.popup1, null);
@@ -61,10 +65,19 @@ public class PopupDisplay {
         //TextView weightTV = popupView1.findViewById(R.id.weightTV);
 
 
+
+
         districtLocationsModel = getDistrictLocationDetails(binMarker.getIdbin());
         //weightTV.setText("Weight " + districtLocationsModel.getWeight());
-        dailyPercent.setText(" % " + districtLocationsModel.getDailyPercent() +" % " );
-        // Firebase Database interaction
+        dailyPercent.setText(districtLocationsModel.getDailyPercent() +" % " );
+        //float dist=districtLocationsModel.getDailyPercent();
+
+        //float scale = 1.0f + (dist / 100.0f); // Calculate scaling factor based on percentage
+
+// Apply scaling to ImageView
+
+        //live_bin.setScaleX(scale); // Scale horizontally
+        //live_bin.setScaleY(scale); // Scale vertically
 
 
 

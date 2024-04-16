@@ -6,6 +6,7 @@ public class DistrictLocationsModel {
     private String weight;
 
     private String idbin;
+    private String district;
 
     public int getDailyPercent() {
         return dailyPercent;
@@ -25,6 +26,14 @@ public class DistrictLocationsModel {
 
     public String getIdbin() {
         return idbin;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getDistrict() {
+        return district;
     }
 
     public void setIdbin(String idbin) {

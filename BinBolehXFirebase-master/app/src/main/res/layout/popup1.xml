@@ -51,7 +51,6 @@
         app:layout_constraintTop_toTopOf="@+id/live_bin" />
 
 
-
     <ImageView
         android:id="@+id/button_image"
         android:layout_width="170dp"
@@ -63,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_image1"
-        app:layout_constraintVertical_bias="0.756" />
+        app:layout_constraintVertical_bias="0.648" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
