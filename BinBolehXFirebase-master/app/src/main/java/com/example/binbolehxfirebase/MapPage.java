@@ -5,6 +5,8 @@ package com.example.binbolehxfirebase;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +70,8 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
         // Setup Marker Click Behavior
         // MarkerClickHandler is capable of handling clicks for all markers.
         MarkerClickHandler.setupMarkerClickBehavior(googleMap, getContext());
+
+
     }
 
     private void setupMapBounds(GoogleMap map) {
@@ -111,26 +115,17 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
     private List<BinMarker> getMarkers() {
         // Return a list of BinMarkers for Tampines or any specific area
         return Arrays.asList(
-                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1",0001),
-                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2",0002),
-                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1",0003),
-                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2",0004)
+                new BinMarker(new LatLng(1.349539, 103.947958), "Tamp Bin 1","0001"),
+                new BinMarker(new LatLng(1.362551, 103.938913), "Tamp Bin 2","0002"),
+                new BinMarker(new LatLng(1.269881, 103.695953), "Jurong Bin 1","0003"),
+                new BinMarker(new LatLng(1.264430, 103.669861), "Jurong Bin 2","0004")
                 // Add more markers as needed
         );
     }
 
 
 
-    public void processMarkers(List<BinMarker> markers) {
-        // Iterate over the list of markers and access their IDs
-        for (BinMarker marker : markers) {
-            double id = marker.getId();
-            // Do something with the marker ID
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            binsRef = database.getReference(String.valueOf(id));
 
-        }
-    }
 
 
 

@@ -26,7 +26,7 @@
         android:src="@drawable/leaderboardboard"
         app:layout_constraintBottom_toTopOf="@+id/leaderboard_axis"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -60,6 +60,7 @@
         android:src="@drawable/montlydataboard"
         app:layout_constraintBottom_toTopOf="@+id/monthyly_axis"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderboard_axis"
         app:layout_constraintVertical_bias="1.0" />
@@ -71,21 +72,13 @@
         android:src="@drawable/monthlyaxis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87" />
+        app:layout_constraintVertical_bias="0.838" />
 
-    <ImageView
-        android:id="@+id/leaderboard"
-        android:layout_width="247dp"
-        android:layout_height="139dp"
-        android:src="@drawable/monthlyboardgraph"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

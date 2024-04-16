@@ -38,20 +38,24 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
-            //Initialise Firebase
-            FirebaseApp.initializeApp(this);
+
         }
-        DatabaseReference mRootDatabaseRef;
-        mRootDatabaseRef = FirebaseDatabase.getInstance().getReference();
+        Log.d("hello","im here");
+        // Initialize Firebase
+        FirebaseApp.initializeApp(this);
+        Log.d("Firebase", "Firebase initialized successfully");
+        DatabaseReference mRootDatabaseRef = FirebaseDatabase.getInstance().getReference();
+
+// Check if Firebase is initialized
+        FirebaseApp firebaseApp = FirebaseApp.getInstance();
+        if (firebaseApp != null) {
+            Log.d("Firebase", "Firebase initialized successfully");
+        } else {
+            Log.e("Firebase", "Firebase not initialized");
+        }
 
 
 
-   //handler to delay execution and show splash screen
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, HomePage.class);
-            startActivity(intent);
-            finish(); // Close the splash screen activity
-        }, SPLASH_DISPLAY_LENGTH);
 
         // onCreate() create totalWeight=0 and totalPercentage = 0 for every month of the year
         // Schedule the task to run at 12 AM every day
@@ -60,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
+    // Example bin ID you want to check
+
+
+
+
+
     // Create four bins with weight = 0, percentage = 0
 
 
@@ -67,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+
+
+
+
 
 
 

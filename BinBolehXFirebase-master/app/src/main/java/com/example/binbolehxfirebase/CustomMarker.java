@@ -60,8 +60,6 @@ public class CustomMarker implements DrawableOnMap {
         }
     }
 
-
-
     public static BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
         // Retrieving the vector drawable from resources
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResourceId);

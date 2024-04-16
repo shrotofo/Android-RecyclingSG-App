@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="BinBolehXFirebase.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-04-15T14:06:45.731380300Z">
+        <DropdownSelection timestamp="2024-04-15T16:32:19.270528700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\shrut\.android\avd\Pixel_3a_API_34.avd" />
