@@ -135,13 +135,13 @@ public class MapPage extends Fragment implements OnMapReadyCallback {
         ),"Tampines"));
 
         districts.add(new DistrictPolygon( Arrays.asList(
-                new LatLng(1.282625, 103.673667),
-                new LatLng(1.290816, 103.694507),
-                new LatLng(1.274611, 103.685245),
-                new LatLng(1.289748, 103.723720),
-                new LatLng(1.254310, 103.706085),
-                new LatLng(1.226465, 103.677493),
-                new LatLng(1.254696, 103.676356)
+                new LatLng(1.282143, 103.670502),
+                new LatLng(1.2973562, 103.687153),
+                new LatLng(1.290724, 103.721829),
+                new LatLng(1.260347, 103.724060),
+                new LatLng(1.264981, 103.681832),
+                new LatLng(1.226538, 103.676854),
+                new LatLng(1.252281, 103.660374)
 
         ),"Jurong"));
 

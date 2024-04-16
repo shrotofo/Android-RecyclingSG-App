@@ -60,7 +60,7 @@
         android:layout_width="151dp"
         android:layout_height="50dp"
         android:src="@drawable/montlydataboard"
-        app:layout_constraintBottom_toTopOf="@+id/monthyly_axis"
+        app:layout_constraintBottom_toTopOf="@+id/recaxis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,10 +68,10 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/monthyly_axis"
+        android:id="@+id/recaxis"
         android:layout_width="285dp"
         android:layout_height="174dp"
-        android:src="@drawable/recyclingaxis"
+        android:src="@drawable/recaxis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -83,7 +83,7 @@
         android:id="@+id/spikeChartView"
         android:layout_width="270dp"
         android:layout_height="160dp"
-        app:layout_constraintBottom_toTopOf="@id/monthyly_axis"
+        app:layout_constraintBottom_toTopOf="@id/recaxis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"

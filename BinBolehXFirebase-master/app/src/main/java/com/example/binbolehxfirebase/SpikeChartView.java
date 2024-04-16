@@ -46,7 +46,7 @@ public class SpikeChartView extends View {
 
         // Initialize paint for the text
         textPaint = new Paint();
-        textPaint.setColor(Color.BLUE);
+        textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(30); // Adjust size as needed
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setAntiAlias(true);

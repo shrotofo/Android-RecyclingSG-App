@@ -10,11 +10,7 @@
         android:icon="@drawable/mapicon"
         android:title=""
         />
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/settingsicon"
-        android:title=""
-        />
+
     <item
         android:id="@+id/navigation_aichatbot"
         android:icon="@drawable/boticon"

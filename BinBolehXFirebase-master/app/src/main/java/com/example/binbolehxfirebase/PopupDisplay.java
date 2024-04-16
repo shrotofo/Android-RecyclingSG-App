@@ -58,12 +58,12 @@ public class PopupDisplay {
         // Locate UI elements where data needs to be displayed
         ImageView live_bin = popupView1.findViewById(R.id.live_bin);
         TextView dailyPercent = popupView1.findViewById(R.id.dailyPercent);
-        TextView weightTV = popupView1.findViewById(R.id.weightTV);
+        //TextView weightTV = popupView1.findViewById(R.id.weightTV);
 
 
         districtLocationsModel = getDistrictLocationDetails(binMarker.getIdbin());
-        weightTV.setText("Weight " + districtLocationsModel.getWeight());
-        dailyPercent.setText("Daily % " + districtLocationsModel.getDailyPercent());
+        //weightTV.setText("Weight " + districtLocationsModel.getWeight());
+        dailyPercent.setText(" % " + districtLocationsModel.getDailyPercent() +" % " );
         // Firebase Database interaction
 
 

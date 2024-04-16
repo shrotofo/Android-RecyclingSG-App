@@ -35,8 +35,6 @@ public class HomePage extends AppCompatActivity {
                 selectedFragment = new HomeFragment(); // Instantiate HomeFragment
             } else if (itemId == R.id.navigation_map) {
                 selectedFragment = new MapPage(); // Instantiate MapPage
-            } else if (itemId == R.id.navigation_settings) {
-                selectedFragment = new SettingPage(); // Instantiate SettingPage
             } else if (itemId == R.id.navigation_aichatbot) {
                 selectedFragment = new AIChatBot(); // Instantiate AIChatBot
             } else {

@@ -20,11 +20,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.178" />
 
+
+
     <ImageView
         android:id="@+id/background_image1"
         android:layout_width="220dp"
         android:layout_height="690dp"
         android:scaleType="fitCenter"
+
 
         android:src="@drawable/environmentalimpact"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,6 +36,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.444" />
+
+    <TextView
+        android:id="@+id/textViewQa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="128 Trees Saved!!"
+        android:textColor="#351C1C"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_image1"
+        app:layout_constraintEnd_toEndOf="@+id/background_image1"
+        app:layout_constraintHorizontal_bias="0.417"
+        app:layout_constraintStart_toStartOf="@+id/background_image1"
+        app:layout_constraintTop_toTopOf="@+id/background_image1"
+        app:layout_constraintVertical_bias="0.354" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="1.2% Water Saved!!"
+        android:textColor="#351C1C"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_image1"
+        app:layout_constraintEnd_toEndOf="@+id/background_image1"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@+id/background_image1"
+        app:layout_constraintTop_toTopOf="@+id/background_image1"
+        app:layout_constraintVertical_bias="0.483" />
+
+    <TextView
+        android:id="@+id/textView1234"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="0.8% CO2 Reduction!!"
+        android:textColor="#351C1C"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_image1"
+        app:layout_constraintEnd_toEndOf="@+id/background_image1"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="@+id/background_image1"
+        app:layout_constraintTop_toTopOf="@+id/background_image1"
+        app:layout_constraintVertical_bias="0.597" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
