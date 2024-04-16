@@ -38,18 +38,34 @@
         app:layout_constraintVertical_bias="0.386" />
 
     <TextView
-        android:id="@+id/textViewQa"
+        android:id="@+id/dailyPercent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="100%"
         android:textColor="#351C1C"
         android:textSize="15sp"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/live_bin"
         app:layout_constraintEnd_toEndOf="@+id/background_image1"
         app:layout_constraintStart_toStartOf="@+id/background_image1"
         app:layout_constraintTop_toTopOf="@+id/live_bin"
         app:layout_constraintVertical_bias="0.712" />
+    <TextView
+        android:id="@+id/weightTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="184dp"
+        android:text="60"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/dailyPercent"
+        app:layout_constraintEnd_toEndOf="@+id/live_bin"
+        app:layout_constraintStart_toStartOf="@+id/live_bin"
+        app:layout_constraintTop_toTopOf="@+id/live_bin"
+        app:layout_constraintVertical_bias="0.989"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/button_image"

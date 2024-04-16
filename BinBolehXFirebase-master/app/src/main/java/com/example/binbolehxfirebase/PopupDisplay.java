@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.binbolehxfirebase.models.DistrictLocationsModel;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,58 +27,55 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PopupDisplay {
 
-    private String dailyPercentValue; // Global variable to store dailyPercent value
+     // Global variable to store dailyPercent value
     ImageView live_bin;
     TextView dailyPercent;
+    private static DistrictLocationsModel districtLocationsModel = new DistrictLocationsModel();
+    private static DistrictLocationsModel getDistrictLocationDetails(String binID){
+        DistrictLocationsModel districtLocationsModel = new DistrictLocationsModel();
 
+        for(DistrictLocationsModel model : MapPage.districtLocationsModels){
+            if(model.getIdbin().equals(binID)){
+
+                districtLocationsModel.setIdbin(binID);
+                districtLocationsModel.setWeight(model.getWeight());
+                districtLocationsModel.setDailyPercent(model.getDailyPercent());
+            }
+        }
+
+
+        return districtLocationsModel;
+    }
     public static void showPopup(Context context, BinMarker binMarker) {
         // Inflating the custom popup layout for the first popup
         View popupView1 = LayoutInflater.from(context).inflate(R.layout.popup1, null);
         PopupWindow popupWindow1 = new PopupWindow(popupView1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         popupWindow1.showAtLocation(popupView1, Gravity.CENTER, 0, 0); // Show the first popup
+        // Inflating the custom popup layout for the first popup
+
+        popupWindow1.showAtLocation(popupView1, Gravity.CENTER, 0, 0); // Show the first popup
+
         // Locate UI elements where data needs to be displayed
         ImageView live_bin = popupView1.findViewById(R.id.live_bin);
-        TextView binStatusText = popupView1.findViewById(R.id.textViewQa);
+        TextView dailyPercent = popupView1.findViewById(R.id.dailyPercent);
+        TextView weightTV = popupView1.findViewById(R.id.weightTV);
+
+
+        districtLocationsModel = getDistrictLocationDetails(binMarker.getIdbin());
+        weightTV.setText("Weight " + districtLocationsModel.getWeight());
+        dailyPercent.setText("Daily % " + districtLocationsModel.getDailyPercent());
         // Firebase Database interaction
-
-        DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference IDref = mRoot.child("0001");
-
-
 
 
 
 
         // Setting a click listener for the button in popup1 to transition to popup2
         popupView1.findViewById(R.id.button_image).setOnClickListener(view -> {
-            DatabaseReference binMarkerRef = FirebaseDatabase.getInstance().getReference().child(binMarker.getIdbin());
-            binMarkerRef.child(String.valueOf(binMarker.getIdbin())) // Ensure you are using the correct ID here
-                    .child("dailyPercent")
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            Double new_percentage_value = snapshot.getValue(Double.class);
-                            if (new_percentage_value != null) {
-                                int cropPercentage = (int) ((1 - new_percentage_value) * live_bin.getHeight());
-                                Drawable drawable = live_bin.getDrawable();
-                                Bitmap originalBitmap = ((BitmapDrawable) drawable).getBitmap();
-                                Bitmap croppedBitmap = Bitmap.createBitmap(originalBitmap, 0, 0, originalBitmap.getWidth(), cropPercentage);
-                                live_bin.setImageBitmap(croppedBitmap);
-                                binStatusText.setText("Fill Level: " + new_percentage_value);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            // Handle potential errors
-                        }
-                    });
+            // Add ValueEventListener to fetch data when button is clicked
 
 
-
-
-
-
+            // Dismiss popup1 upon clicking the button
+            popupWindow1.dismiss();
 
 
 
@@ -88,8 +87,11 @@ public class PopupDisplay {
             PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             // Set a click listener for the close button in popup2
             popupView2.findViewById(R.id.close_button).setOnClickListener(view1 -> {
+
                 // Logic to close popup2
                 popupWindow2.dismiss();
+
+
             });
 
             // Show popup2

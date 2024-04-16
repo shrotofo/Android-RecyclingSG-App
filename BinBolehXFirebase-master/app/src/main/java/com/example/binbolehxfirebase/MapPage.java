@@ -10,7 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.example.binbolehxfirebase.models.DistrictLocationsModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,8 +22,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,11 +36,43 @@ import java.util.List;
 public class MapPage extends Fragment implements OnMapReadyCallback {
 
     private DatabaseReference binsRef;
+    private ProgressBar progressPB;
+    DatabaseReference mDatabase;
+    public static ArrayList<DistrictLocationsModel> districtLocationsModels = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment from the XML layout file
         View rootView = inflater.inflate(R.layout.mappage, container, false);
+
+        progressPB = rootView.findViewById(R.id.progressPB);
+        progressPB.setVisibility(View.VISIBLE);
+
+        if(districtLocationsModels.size()>0){
+            districtLocationsModels.clear();
+        }//https://binboleh-default-rtdb.asia-southeast1.firebasedatabase.app/
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("binDetails").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+// items.clear();
+                progressPB.setVisibility(View.GONE);
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    DistrictLocationsModel itemValue = dataSnapshot.getValue(DistrictLocationsModel.class);
+                    if (itemValue != null) {
+                        districtLocationsModels.add(itemValue);
+                    }
+                }
+//
+// adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                progressPB.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 
