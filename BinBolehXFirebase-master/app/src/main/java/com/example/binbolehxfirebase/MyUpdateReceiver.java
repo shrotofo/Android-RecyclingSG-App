@@ -1,11 +1,15 @@
 package com.example.binbolehxfirebase;
 
-import android.content.BroadcastReceiver;import android.content.Context;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
-import com.google.firebase.FirebaseApp;import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 public class MyUpdateReceiver extends BroadcastReceiver {
 
@@ -31,9 +35,9 @@ public class MyUpdateReceiver extends BroadcastReceiver {
                 String currentMonthName = months[currentMonth];
 
                 // Reference to the current month node
-                DatabaseReference monthNodeRef = FirebaseDatabase.getInstance().getReference().child("months").child(currentMonthName);
+                DatabaseReference monthNodeRef = FirebaseDatabase.getInstance().getReference().child("month").child(currentMonthName);
 
-                mRootDatabaseRef.child("ID").addListenerForSingleValueEvent(new ValueEventListener() {
+                mRootDatabaseRef.child("binDetails").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         double totalWeight = 0;
@@ -41,14 +45,21 @@ public class MyUpdateReceiver extends BroadcastReceiver {
 
                         for (DataSnapshot binSnapshot : dataSnapshot.getChildren()) {
                             double binWeight = binSnapshot.child("weight").getValue(Integer.class);
-                            double binPercentage = binSnapshot.child("percentage").getValue(Integer.class);
+                            double binPercentage = binSnapshot.child("dailyPercent").getValue(Integer.class);
                             totalWeight += binWeight;
                             totalPercentage += binPercentage;
                         }
 
+
                         // Update total weight and total percentage in the database
                         monthNodeRef.child("totalWeight").setValue(totalWeight);
                         monthNodeRef.child("totalPercentage").setValue(totalPercentage);
+
+                        //reset values to 0 daily
+                        mRootDatabaseRef.child("binDetails").child("weight").setValue(0);
+                        mRootDatabaseRef.child("binDetails").child("dailyPercent").setValue(0);
+
+
                     }
 
                     @Override
