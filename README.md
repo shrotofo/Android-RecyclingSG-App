@@ -14,7 +14,8 @@
 - **Firebase**: Backend platform for real-time data handling and authentication.
 - **GPS**: Location services for bin locator functionality.
 
-  [Click here to view video 😎](https://www.youtube.com/watch?v=H0bLJd_8v0Y)
+  
   ![](./recycle.png)
+  [Click here to view video 😎](https://www.youtube.com/watch?v=H0bLJd_8v0Y)
 
 
